@@ -17,15 +17,14 @@ green = (130, 255, 0)
 black = (0, 0, 0)
 point = 0
 pygame.init()
-colour_list = {'yellow': yellow, 'grey': grey, 'white': white, 'purple': purple, 'red': red, 'dark_blue': dark_blue, 'orange': orange, 'pink': pink, 'green': green, 'black': black}
-text_colour = random.choice(list(colour_list.keys()))
-print(text_colour)
-colour = random.choice(list(colour_list.values()))
-chosen_colour = ''
-text_colour = chosen_colour
-t1 = random.choice(list(colour_list.values()))
-t2 = random.choice(list(colour_list.values()))
-t3 = random.choice(list(colour_list.values()))
+colour_list = ['red', 'orange', 'green', 'dark_blue', 'grey', 'black', 'pink', 'white', 'purple']
+Text_colour_list = [red, orange, green, dark_blue, grey, black, pink, white, purple]
+colour = random.choice(colour_list)
+text_colour = random.choice(Text_colour_list)
+chosen_colour = random.choice(Text_colour_list)
+t1 = random.choice(Text_colour_list)
+t2 = random.choice(Text_colour_list)
+t3 = random.choice(Text_colour_list)
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Click game')
 screen.fill(blue)
@@ -40,13 +39,6 @@ def DrawText(text, Textcolor, Rectcolor, x, y, fsize):
 
 def rectangle(display, color, x, y, w, h):
     pygame.draw.rect(display, color, (x, y, w, h))
-
-def randomcolour():
-    t1 = random.choice(list(colour_list.values()))
-    t2 = random.choice(list(colour_list.values()))
-    t3 = random.choice(list(colour_list.values()))
-    text_colour = random.choice(list(colour_list.keys()))
-    chosen_colour = text_colour
 
 def main_loop():
     global point
@@ -67,45 +59,53 @@ def main_loop():
                 if 150 <= mopos[0] <= 250 and 250 <= mopos[1] <= 400:
                     if t1 == chosen_colour:
                         point = point + 1
-                        randomcolour()
+                        t1 = random.choice(Text_colour_list)
+                        t2 = random.choice(Text_colour_list)
+                        t3 = random.choice(Text_colour_list)
+                        chosen_colour = random.choice(Text_colour_list)
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mopos = pygame.mouse.get_pos()
                 if 350 <= mopos[0] <= 450 and 250 <= mopos[1] <= 400:
                     if t2 == chosen_colour:
-                        point = point + 1
-                        randomcolour()
+                        t1 = random.choice(Text_colour_list)
+                        t2 = random.choice(Text_colour_list)
+                        t3 = random.choice(Text_colour_list)
+                        chosen_colour = random.choice(Text_colour_list)
                     
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mopos = pygame.mouse.get_pos()
                 if 550 <= mopos[0] <= 650 and 250 <= mopos[1] <= 400:
                     if t3 == chosen_colour:
-                        point = point + 1
-                        randomcolour()
+                        t1 = random.choice(Text_colour_list)
+                        t2 = random.choice(Text_colour_list)
+                        t3 = random.choice(Text_colour_list)
+                        chosen_colour = random.choice(Text_colour_list)
                     
 
         if t1 == t2:
-            t1 = random.choice(list(colour_list.values()))
+            t1 = random.choice(Text_colour_list)
 
         if t2 == t3:
-            t2 = random.choice(list(colour_list.values()))
+            t2 = random.choice(Text_colour_list)
 
         if t3 == t1:
-            t3 = random.choice(list(colour_list.values()))
+            t3 = random.choice(Text_colour_list)
 
         if chosen_colour != t1 and t2 and t3:
-            t1 = random.choice(list(colour_list.values()))
-            t2 = random.choice(list(colour_list.values()))
-            t3 = random.choice(list(colour_list.values()))
+            t1 = random.choice(Text_colour_list)
+            t2 = random.choice(Text_colour_list)
+            t3 = random.choice(Text_colour_list)
 
         DrawText("Click", black, blue, 400, 100, 50)
-        DrawText(text_colour, colour, blue, 400, 175, 50)
+        DrawText(colour, chosen_colour, blue, 400, 175, 50)
         DrawText("you have " + (f'{point:.2f}') + " point", black, blue, 100, 20, 20)
         rectangle(screen, t1, 150, 250, 100, 150)
         rectangle(screen, t2, 350, 250, 100, 150)
         rectangle(screen, t3, 550, 250, 100, 150)
         pygame.display.update()
         clock.tick(60)
+
 
 main_loop()
 pygame.quit()
