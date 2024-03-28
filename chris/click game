@@ -62,26 +62,25 @@ def main_loop():
                         t1 = random.choice(colour_list)
                         t2 = random.choice(colour_list)
                         t3 = random.choice(colour_list)
+                        colour = random.choice(colour_list)
                         chosen_colour = random.choice(colour_list)
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mopos = pygame.mouse.get_pos()
                 if 350 <= mopos[0] <= 450 and 250 <= mopos[1] <= 400:
                     if t2 == chosen_colour:
                         point = point + 1
                         t1 = random.choice(colour_list)
                         t2 = random.choice(colour_list)
                         t3 = random.choice(colour_list)
+                        colour = random.choice(colour_list)
                         chosen_colour = random.choice(colour_list)
                     
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mopos = pygame.mouse.get_pos()
                 if 550 <= mopos[0] <= 650 and 250 <= mopos[1] <= 400:
                     if t3 == chosen_colour:
                         point = point + 1
                         t1 = random.choice(colour_list)
                         t2 = random.choice(colour_list)
                         t3 = random.choice(colour_list)
+                        colour = random.choice(colour_list)
                         chosen_colour = random.choice(colour_list)
 
         if chosen_colour != t1:
@@ -135,8 +134,6 @@ def main_loop():
         if chosen_colour == purple:
             rectangle(screen, blue, 250, 125, 300, 100)
             DrawText('purple', colour, blue, 400, 175, 50)
-
-        rtclick_time - start_time
 
         DrawText("Click", black, blue, 400, 100, 50)
         DrawText("you have " + (f'{point:.2f}') + " point", black, blue, 100, 20, 20)
