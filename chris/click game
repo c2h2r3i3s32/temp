@@ -2,8 +2,6 @@ import pygame
 import random
 import time
 
-start_time = time.time()
-click_time = time.time()
 clock = pygame.time.Clock()
 height = 600
 width = 800
@@ -21,13 +19,14 @@ black = (0, 0, 0)
 point = 0
 pygame.init()
 colour_list = [red, orange, green, dark_blue, grey, black, pink, white, purple]
-colour = random.choice(colour_list)
 chosen_colour = random.choice(colour_list)
 t1 = random.choice(colour_list)
 t2 = random.choice(colour_list)
 t3 = random.choice(colour_list)
+colour = random.choice(colour_list)
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Click game')
+reaction = 0
 screen.fill(blue)
 pygame.display.flip()
 
@@ -45,10 +44,12 @@ def main_loop():
     global point
     global colour
     global chosen_colour
+    global reaction
     global t1
     global t2
     global t3
     game_running = True
+    start_time = time.time()
     while game_running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -64,6 +65,9 @@ def main_loop():
                         t3 = random.choice(colour_list)
                         colour = random.choice(colour_list)
                         chosen_colour = random.choice(colour_list)
+                        click_time = time.time()
+                        reaction = round((click_time - start_time),2)
+                        start_time = time.time()
 
                 if 350 <= mopos[0] <= 450 and 250 <= mopos[1] <= 400:
                     if t2 == chosen_colour:
@@ -73,6 +77,9 @@ def main_loop():
                         t3 = random.choice(colour_list)
                         colour = random.choice(colour_list)
                         chosen_colour = random.choice(colour_list)
+                        click_time = time.time()
+                        reaction = round((click_time - start_time),2)
+                        start_time = time.time()
                     
                 if 550 <= mopos[0] <= 650 and 250 <= mopos[1] <= 400:
                     if t3 == chosen_colour:
@@ -82,6 +89,9 @@ def main_loop():
                         t3 = random.choice(colour_list)
                         colour = random.choice(colour_list)
                         chosen_colour = random.choice(colour_list)
+                        click_time = time.time()
+                        reaction = round((click_time - start_time),2)
+                        start_time = time.time()
 
         if chosen_colour != t1:
             if chosen_colour != t2:
@@ -135,9 +145,8 @@ def main_loop():
             rectangle(screen, blue, 250, 125, 300, 100)
             DrawText('purple', colour, blue, 400, 175, 50)
 
-        DrawText("Click", black, blue, 400, 100, 50)
         DrawText("you have " + (f'{point:.2f}') + " point", black, blue, 100, 20, 20)
-        DrawText
+        DrawText("your reaction time is " + (f'{reaction:.2f}') + " second", black, blue, 630, 20, 20)
         rectangle(screen, t1, 150, 250, 100, 150)
         rectangle(screen, t2, 350, 250, 100, 150)
         rectangle(screen, t3, 550, 250, 100, 150)
