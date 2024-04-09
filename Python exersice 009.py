@@ -5,3 +5,5 @@ n3 = n2 * 0.03 + n2
 print(round(n1, 2))
 print(round(n2, 2))
 print(round(n3, 2))
+      
+     
