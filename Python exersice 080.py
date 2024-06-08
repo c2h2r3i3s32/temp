@@ -21,7 +21,7 @@ for _ in range(time):
             consecutive += 1
         else:
             consecutive = 1
-        last_flip = flip      
+            last_flip = flip      
     
     print(outcomes)
     total_flips += flips
