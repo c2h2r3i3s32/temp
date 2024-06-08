@@ -28,4 +28,4 @@ for _ in range(time):
     print("flips", flips)
 
 average_flips = total_flips / time
-print('Average number of flips is', average_flips)
+print('Average number of flips is', )
