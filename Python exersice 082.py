@@ -7,7 +7,6 @@ def taxi_fare(distance):
     distance_meters = distance * kilometer
     intervals = distance_meters // meter
     total_fare = base + intervals * cost
-    add_cost = distance_meters // meter
 
     return total_fare
 
