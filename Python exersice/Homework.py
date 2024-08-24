@@ -28,12 +28,9 @@ while True:
         
     if user_input == 'quit':
         break
-        
-    try:
-        num1, operator, num2 = parse_input(user_input)
-        result = calculate(num1, operator, num2)
-        print(f"Result: {result}")
-    except ValueError as e:
-        print(f"Error: {e}")
+
+    num1, operator, num2 = parse_input(user_input)
+    result = calculate(num1, operator, num2)
+    print(f"Result: {result}")
 
 
